@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import sys,codecs,json,os
+import sys,os
 from requests_oauthlib import OAuth1Session
 
-sys.stdout = codecs.getwriter(sys.stdout.encoding)(sys.stdout, errors='ignore')
-reload(sys)
-sys.setdefaultencoding('utf-8')
-   
 path = os.getcwd()+"/"
 
 if __name__ == '__main__':
@@ -18,9 +14,7 @@ if __name__ == '__main__':
 
   setting = appSettings.setting()
   consumer,cSecret,accessToken,aSecret = setting.k
-
-
-sys.exit()
+  url = bridge.getUrl("search")
 
 params = {
          "q": query, 
@@ -30,6 +24,13 @@ params = {
 
 twiKey = OAuth1Session(consumer, cSecret, accessToken, aSecret)
 request = twiKey.get(url, params = params)
+
+if __name__ == '__main__':
+  bridge.searchUserRequest(request)
+  
+
+
+sys.exit()
 
 if request.status_code == 200:
     timeline = json.loads(request.text,'utf-8')
@@ -47,7 +48,7 @@ else :
     print ("Error: %d" % request.status_code)
 
 
-sys.exit()
+
 
 
 
