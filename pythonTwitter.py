@@ -2,8 +2,7 @@
 
 import sys,codecs,json,os
 from requests_oauthlib import OAuth1Session
-#sys.stdin  = codecs.getreader('shift-jis')(sys.stdin)
-#codecs.getwriter(sys.stdout.encoding)(sys.stdout, errors='replace')
+
 sys.stdout = codecs.getwriter(sys.stdout.encoding)(sys.stdout, errors='ignore')
 reload(sys)
 sys.setdefaultencoding('utf-8')
