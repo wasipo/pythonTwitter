@@ -27,40 +27,11 @@ request = twiKey.get(url, params = params)
 
 if __name__ == '__main__':
   bridge.searchUserRequest(request)
-  
+  getFriendData = bridge.addFriendMethod()
+  uId,nameId = getuserInputSearch
+  addFriendMethodValue(uId,nameId)
 
 
-sys.exit()
-
-if request.status_code == 200:
-    timeline = json.loads(request.text,'utf-8')
-    for tweet in timeline["statuses"]:
-        if tweet["user"]["friends_count"] > tweet["user"]["followers_count"] :
-          print("--------------------------")
-          print(tweet["id"])
-          print(tweet["user"]["name"])
-          print(tweet["user"]["friends_count"])
-          print(tweet["user"]["followers_count"])
-          print("--------------------------")
-          print(tweet["user"]["description"])
-          print("--------------------------")
-else :
-    print ("Error: %d" % request.status_code)
-
-
-
-
-
-
-print "ＩＤを入力？"
-uId = raw_input()
-print "名前を入力?"
-nameId = raw_input()
-
-if len(uId) == 0 :
-  uId = "true"
-elif len(nameId) == 0 :
-  nameId = "true" 
 
 params = {
     "user_id ": uId,

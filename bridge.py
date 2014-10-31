@@ -16,6 +16,20 @@ class bridge:
 		self.count = raw_input()
 		return [self.query,self.count]		
 
+	def addFriendMethod(self) :
+		print "ＩＤを入力？"
+		self.uId = raw_input()
+		print "名前を入力?"
+		self.nameId = raw_input()
+		return [self.uId,self.nameId]
+
+	def addFriendMethodValue(self,uId,nameId) :
+		if len(uId) == 0 :
+  			self.uId = "true"
+		elif len(nameId) == 0 :
+  			self.nameId = "true" 
+  		return [self.uId,self.nameId]
+
 	def getUrl(self,prt) :
 		if prt == "search" :
 			return "https://api.twitter.com/1.1/search/tweets.json"
@@ -24,7 +38,7 @@ class bridge:
 
 	def searchUserRequest(self,reqObj) :
 		import json
-		
+
 		if reqObj.status_code == 200:
 		    timeline = json.loads(reqObj.text,'utf-8')
 		    for tweet in timeline["statuses"]:
