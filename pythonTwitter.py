@@ -28,13 +28,13 @@ request = twiKey.get(url, params = params)
 if __name__ == '__main__':
   bridge.searchUserRequest(request)
   getFriendData = bridge.addFriendMethod()
-  uId,nameId = getuserInputSearch
-  addFriendMethodValue(uId,nameId)
-
+  uId,nameId = getFriendData
+  bridge.addFriendMethodValue(uId,nameId)
+  url = bridge.getUrl("follow")
 
 
 params = {
-    "user_id ": uId,
+    "user_id ": uId
     "screen_name ": nameId,
     "follow" : "false"
 }

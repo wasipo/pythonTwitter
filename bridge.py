@@ -33,8 +33,8 @@ class bridge:
 	def getUrl(self,prt) :
 		if prt == "search" :
 			return "https://api.twitter.com/1.1/search/tweets.json"
-
-
+		elif prt == "follow" :
+			return "https://api.twitter.com/1.1/friendships/create.json"
 
 	def searchUserRequest(self,reqObj) :
 		import json
