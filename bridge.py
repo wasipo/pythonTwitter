@@ -2,13 +2,6 @@
 
 class bridge:
 
-#url = "https://api.twitter.com/1.1/users/show.json"
-#urlSearchTweet = "https://api.twitter.com/1.1/search/tweets.json"
-#urlFriendTwitter = "https://api.twitter.com/1.1/friendships/create.json"
-#url = "https://api.twitter.com/1.1/users/suggestions/:slug.json"
-#url = "https://api.twitter.com/1.1/statuses/home_timeline.json"
-
-
 	def serachUserMessage(self) :
 		print "検索するワードを入れてください。"
 		self.query = raw_input()
@@ -19,22 +12,15 @@ class bridge:
 	def addFriendMethod(self) :
 		print "ＩＤを入力？"
 		self.uId = raw_input()
-		print "名前を入力?"
-		self.nameId = raw_input()
-		return [self.uId,self.nameId]
-
-	def addFriendMethodValue(self,uId,nameId) :
-		if len(uId) == 0 :
-  			self.uId = "true"
-		elif len(nameId) == 0 :
-  			self.nameId = "true" 
-  		return [self.uId,self.nameId]
+		return self.uId
 
 	def getUrl(self,prt) :
 		if prt == "search" :
 			return "https://api.twitter.com/1.1/search/tweets.json"
 		elif prt == "follow" :
 			return "https://api.twitter.com/1.1/friendships/create.json"
+		elif prt == "postTweet" :
+			return "https://api.twitter.com/1.1/statuses/update.json"
 
 	def searchUserRequest(self,reqObj) :
 		import json
@@ -44,7 +30,7 @@ class bridge:
 		    for tweet in timeline["statuses"]:
 		        if tweet["user"]["friends_count"] > tweet["user"]["followers_count"] :
 		          print("--------------------------")
-		          print(tweet["id"])
+		          print(tweet["user"]["id"])
 		          print(tweet["user"]["name"])
 		          print(tweet["user"]["friends_count"])
 		          print(tweet["user"]["followers_count"])

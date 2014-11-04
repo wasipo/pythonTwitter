@@ -28,18 +28,13 @@ request = twiKey.get(url, params = params)
 if __name__ == '__main__':
   bridge.searchUserRequest(request)
   getFriendData = bridge.addFriendMethod()
-  uId,nameId = getFriendData
-  bridge.addFriendMethodValue(uId,nameId)
+  uId = getFriendData
   url = bridge.getUrl("follow")
+  setting = appSettings.setting()
 
+twiKey = OAuth1Session(consumer, cSecret, accessToken, aSecret)
+request = twiKey.post("https://api.twitter.com/1.1/friendships/create.json?user_id="+uId+"&follow=true")
 
-params = {
-    "user_id ": uId
-    "screen_name ": nameId,
-    "follow" : "false"
-}
-
-request = twiKey.post(url, params = params)
 
 if request.status_code == 200 :
    print "フォローしました。"
